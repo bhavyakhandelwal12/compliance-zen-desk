@@ -16,11 +16,11 @@ import { DemoTag } from "@/components/status";
 
 const nav = [
   { to: "/app", label: "Overview", icon: LayoutDashboard, exact: true },
-  { to: "/app/changes", label: "Compliance changes", icon: Scale },
-  { to: "/app/contracts", label: "Contracts", icon: FileText },
-  { to: "/app/employees", label: "Employees", icon: Users },
-  { to: "/app/audit", label: "Audit trail", icon: History },
-  { to: "/app/settings", label: "Settings", icon: Settings },
+  { to: "/app/changes", label: "Compliance changes", icon: Scale, exact: false },
+  { to: "/app/contracts", label: "Contracts", icon: FileText, exact: false },
+  { to: "/app/employees", label: "Employees", icon: Users, exact: false },
+  { to: "/app/audit", label: "Audit trail", icon: History, exact: false },
+  { to: "/app/settings", label: "Settings", icon: Settings, exact: false },
 ] as const;
 
 export function AppShell({ children }: { children: ReactNode }) {
