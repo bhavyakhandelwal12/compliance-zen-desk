@@ -14,8 +14,14 @@ import { Route as AppRouteImport } from './routes/app'
 import { Route as DemoRouteImport } from './routes/demo'
 import { Route as HowItWorksRouteImport } from './routes/how-it-works'
 import { Route as AppIndexRouteImport } from './routes/app.index'
+import { Route as AppAuditRouteImport } from './routes/app.audit'
+import { Route as AppSettingsRouteImport } from './routes/app.settings'
 import { Route as AppChangesIndexRouteImport } from './routes/app.changes.index'
 import { Route as AppChangesChangeIdRouteImport } from './routes/app.changes.$changeId'
+import { Route as AppContractsIndexRouteImport } from './routes/app.contracts.index'
+import { Route as AppEmployeesIndexRouteImport } from './routes/app.employees.index'
+import { Route as AppEmployeesEmployeeIdRouteImport } from './routes/app.employees.$employeeId'
+import { Route as AppContractsContractIdReviewRouteImport } from './routes/app.contracts.$contractId.review'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -42,6 +48,16 @@ const AppIndexRoute = AppIndexRouteImport.update({
   path: '/',
   getParentRoute: () => AppRoute,
 } as any)
+const AppAuditRoute = AppAuditRouteImport.update({
+  id: '/audit',
+  path: '/audit',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppSettingsRoute = AppSettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => AppRoute,
+} as any)
 const AppChangesIndexRoute = AppChangesIndexRouteImport.update({
   id: '/changes/',
   path: '/changes/',
@@ -52,23 +68,56 @@ const AppChangesChangeIdRoute = AppChangesChangeIdRouteImport.update({
   path: '/changes/$changeId',
   getParentRoute: () => AppRoute,
 } as any)
+const AppContractsIndexRoute = AppContractsIndexRouteImport.update({
+  id: '/contracts/',
+  path: '/contracts/',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppEmployeesIndexRoute = AppEmployeesIndexRouteImport.update({
+  id: '/employees/',
+  path: '/employees/',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppEmployeesEmployeeIdRoute = AppEmployeesEmployeeIdRouteImport.update({
+  id: '/employees/$employeeId',
+  path: '/employees/$employeeId',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppContractsContractIdReviewRoute =
+  AppContractsContractIdReviewRouteImport.update({
+    id: '/contracts/$contractId/review',
+    path: '/contracts/$contractId/review',
+    getParentRoute: () => AppRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/app': typeof AppRouteWithChildren
   '/demo': typeof DemoRoute
   '/how-it-works': typeof HowItWorksRoute
+  '/app/audit': typeof AppAuditRoute
+  '/app/settings': typeof AppSettingsRoute
   '/app/': typeof AppIndexRoute
   '/app/changes/$changeId': typeof AppChangesChangeIdRoute
+  '/app/employees/$employeeId': typeof AppEmployeesEmployeeIdRoute
   '/app/changes/': typeof AppChangesIndexRoute
+  '/app/contracts/': typeof AppContractsIndexRoute
+  '/app/employees/': typeof AppEmployeesIndexRoute
+  '/app/contracts/$contractId/review': typeof AppContractsContractIdReviewRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/demo': typeof DemoRoute
   '/how-it-works': typeof HowItWorksRoute
+  '/app/audit': typeof AppAuditRoute
+  '/app/settings': typeof AppSettingsRoute
   '/app': typeof AppIndexRoute
   '/app/changes/$changeId': typeof AppChangesChangeIdRoute
+  '/app/employees/$employeeId': typeof AppEmployeesEmployeeIdRoute
   '/app/changes': typeof AppChangesIndexRoute
+  '/app/contracts': typeof AppContractsIndexRoute
+  '/app/employees': typeof AppEmployeesIndexRoute
+  '/app/contracts/$contractId/review': typeof AppContractsContractIdReviewRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -76,9 +125,15 @@ export interface FileRoutesById {
   '/app': typeof AppRouteWithChildren
   '/demo': typeof DemoRoute
   '/how-it-works': typeof HowItWorksRoute
+  '/app/audit': typeof AppAuditRoute
+  '/app/settings': typeof AppSettingsRoute
   '/app/': typeof AppIndexRoute
   '/app/changes/$changeId': typeof AppChangesChangeIdRoute
+  '/app/employees/$employeeId': typeof AppEmployeesEmployeeIdRoute
   '/app/changes/': typeof AppChangesIndexRoute
+  '/app/contracts/': typeof AppContractsIndexRoute
+  '/app/employees/': typeof AppEmployeesIndexRoute
+  '/app/contracts/$contractId/review': typeof AppContractsContractIdReviewRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -87,26 +142,44 @@ export interface FileRouteTypes {
     | '/app'
     | '/demo'
     | '/how-it-works'
+    | '/app/audit'
+    | '/app/settings'
     | '/app/'
     | '/app/changes/$changeId'
+    | '/app/employees/$employeeId'
     | '/app/changes/'
+    | '/app/contracts/'
+    | '/app/employees/'
+    | '/app/contracts/$contractId/review'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/demo'
     | '/how-it-works'
+    | '/app/audit'
+    | '/app/settings'
     | '/app'
     | '/app/changes/$changeId'
+    | '/app/employees/$employeeId'
     | '/app/changes'
+    | '/app/contracts'
+    | '/app/employees'
+    | '/app/contracts/$contractId/review'
   id:
     | '__root__'
     | '/'
     | '/app'
     | '/demo'
     | '/how-it-works'
+    | '/app/audit'
+    | '/app/settings'
     | '/app/'
     | '/app/changes/$changeId'
+    | '/app/employees/$employeeId'
     | '/app/changes/'
+    | '/app/contracts/'
+    | '/app/employees/'
+    | '/app/contracts/$contractId/review'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -153,6 +226,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppIndexRouteImport
       parentRoute: typeof AppRoute
     }
+    '/app/audit': {
+      id: '/app/audit'
+      path: '/audit'
+      fullPath: '/app/audit'
+      preLoaderRoute: typeof AppAuditRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/settings': {
+      id: '/app/settings'
+      path: '/settings'
+      fullPath: '/app/settings'
+      preLoaderRoute: typeof AppSettingsRouteImport
+      parentRoute: typeof AppRoute
+    }
     '/app/changes/': {
       id: '/app/changes/'
       path: '/changes'
@@ -167,19 +254,59 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppChangesChangeIdRouteImport
       parentRoute: typeof AppRoute
     }
+    '/app/contracts/': {
+      id: '/app/contracts/'
+      path: '/contracts'
+      fullPath: '/app/contracts/'
+      preLoaderRoute: typeof AppContractsIndexRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/employees/': {
+      id: '/app/employees/'
+      path: '/employees'
+      fullPath: '/app/employees/'
+      preLoaderRoute: typeof AppEmployeesIndexRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/employees/$employeeId': {
+      id: '/app/employees/$employeeId'
+      path: '/employees/$employeeId'
+      fullPath: '/app/employees/$employeeId'
+      preLoaderRoute: typeof AppEmployeesEmployeeIdRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/contracts/$contractId/review': {
+      id: '/app/contracts/$contractId/review'
+      path: '/contracts/$contractId/review'
+      fullPath: '/app/contracts/$contractId/review'
+      preLoaderRoute: typeof AppContractsContractIdReviewRouteImport
+      parentRoute: typeof AppRoute
+    }
   }
 }
 
 interface AppRouteChildren {
+  AppAuditRoute: typeof AppAuditRoute
+  AppSettingsRoute: typeof AppSettingsRoute
   AppIndexRoute: typeof AppIndexRoute
   AppChangesChangeIdRoute: typeof AppChangesChangeIdRoute
+  AppEmployeesEmployeeIdRoute: typeof AppEmployeesEmployeeIdRoute
   AppChangesIndexRoute: typeof AppChangesIndexRoute
+  AppContractsIndexRoute: typeof AppContractsIndexRoute
+  AppEmployeesIndexRoute: typeof AppEmployeesIndexRoute
+  AppContractsContractIdReviewRoute: typeof AppContractsContractIdReviewRoute
 }
 
 const AppRouteChildren: AppRouteChildren = {
+  AppAuditRoute: AppAuditRoute,
+  AppSettingsRoute: AppSettingsRoute,
   AppIndexRoute: AppIndexRoute,
   AppChangesChangeIdRoute: AppChangesChangeIdRoute,
+  AppEmployeesEmployeeIdRoute: AppEmployeesEmployeeIdRoute,
   AppChangesIndexRoute: AppChangesIndexRoute,
+  AppContractsIndexRoute: AppContractsIndexRoute,
+  AppEmployeesIndexRoute: AppEmployeesIndexRoute,
+  AppContractsContractIdReviewRoute: AppContractsContractIdReviewRoute,
 }
 
 const AppRouteWithChildren = AppRoute._addFileChildren(AppRouteChildren)
