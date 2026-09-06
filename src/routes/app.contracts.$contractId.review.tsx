@@ -117,7 +117,7 @@ function ReviewWorkspace() {
                 <p className="font-mono text-[13px] leading-[1.9] text-foreground">
                   {change.diff.map((d, i) =>
                     d.type === "removed" ? null : (
-                      <span key={i} className={d.type === "added" ? "bg-sage/18 text-foreground" : ""}>
+                      <span key={i} className={d.type === "added" ? "bg-sage/25 text-foreground" : ""}>
                         {d.text}
                       </span>
                     ),
@@ -131,7 +131,7 @@ function ReviewWorkspace() {
 
           <div className="flex flex-wrap items-center gap-4 rounded-lg border border-border bg-card px-5 py-4">
             <Legend className="bg-terracotta/12 text-terracotta line-through" label="Removed text" />
-            <Legend className="bg-sage/18 text-foreground" label="Added text" />
+            <Legend className="bg-sage/25 text-foreground" label="Added text" />
             <Legend className="bg-ochre/25 text-foreground" label="Clause under review" />
           </div>
 
